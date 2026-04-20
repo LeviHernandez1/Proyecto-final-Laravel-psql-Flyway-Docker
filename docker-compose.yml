@@ -20,7 +20,7 @@ services:
         volumes:
             - '.:/var/www/html'
         networks:
-            - curso
+            - proyecto_laravel
         depends_on:
             - pgsql
             - mailpit
@@ -37,7 +37,7 @@ services:
             - 'curso-pgsql:/var/lib/postgresql/data'
             - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
-            - curso
+            - proyecto_laravel
         healthcheck:
             test:
                 - CMD
@@ -55,9 +55,9 @@ services:
             - '${FORWARD_MAILPIT_PORT:-1025}:1025'
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
-            - curso
+            - proyecto_laravel
 networks:
-    curso:
+    proyecto_laravel:
         driver: bridge
 volumes:
     curso-pgsql:

@@ -28,6 +28,12 @@
                     <x-nav-link :href="route('admin.reservaciones.index')" :active="request()->routeIs('admin.reservaciones.index')">
                         {{ __('Administración de reservaciones') }}
                     </x-nav-link>
+                    {{-- NUEVO LINK DE EVENTOS --}}
+                    @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
+                        <x-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">
+                            {{ __('Gestión de Eventos') }}
+                        </x-nav-link>
+                    @endcanany
                 </div>
             </div>
 
@@ -91,6 +97,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            {{-- NUEVO LINK RESPONSIVO DE EVENTOS --}}
+            @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
+                <x-responsive-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">
+                    {{ __('Gestión de Eventos') }}
+                </x-responsive-nav-link>
+            @endcanany
             @canany(['consultar-listado-usuarios', 'registrar-usuario', 'cambiar-estatus-usuario'])
                 <x-responsive-nav-link :href="route('admin.usuarios.index')" :active="request()->routeIs('admin.usuarios.index')">
                     {{ __('Administración de usuarios') }}

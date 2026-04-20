@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Eventos\GestionarEventos;
 use App\Livewire\Reservaciones\ListarReservacionesComponent;
 use App\Livewire\Roles\ListarRolesComponent;
 use App\Livewire\Usuarios\ListarUsuariosComponent;
@@ -20,6 +21,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/reservaciones', ListarReservacionesComponent::class)->name('admin.reservaciones.index');
+
+    // Nueva ruta de Reservaciones
+    Route::get('/reservaciones', ListarReservacionesComponent::class)->name('admin.reservaciones.index');
+    // Nueva ruta de eventos
+    Route::get('/eventos', GestionarEventos::class)->name('admin.eventos.index');
+
     Route::get('/usuarios', ListarUsuariosComponent::class)->name('admin.usuarios.index')->middleware('permission:consultar-listado-usuarios|registrar-usuario|cambiar-estatus-usuario');
     Route::get('/roles', ListarRolesComponent::class)->name('admin.roles.index')->middleware('permission:consultar-listado-roles|registrar-rol');
 });
@@ -29,6 +36,7 @@ Route::get('/creditos', function () {
 })->name('creditos');
 
 require __DIR__.'/auth.php';
+
 
 
 //Para manejar errores 404
