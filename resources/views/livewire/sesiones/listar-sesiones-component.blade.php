@@ -45,8 +45,10 @@
 
                                     {{-- Botón Eliminar --}}
                                     <x-action-button class="bg-red-500 ml-3" data-tippy="Eliminar"
-                                        wire:click="eliminar({{ $sesion->id_sesion }})"
-                                        wire:confirm="¿Deseas eliminar la sesión de {{ $sesion->ponente }}?">
+                                        wire:click="$dispatch('abrir-modal-eliminar-sesion', { 
+                                                idSesion: {{ $sesion->id_sesion }}, 
+                                                ponente: '{{ $sesion->ponente }}' 
+                                            })">
                                         <i class="fa-solid fa-trash"></i>
                                     </x-action-button>
                                 </div>
@@ -61,5 +63,6 @@
     {{-- Componente del Modal de Registro (Asegúrate de que el nombre sea correcto) --}}
     @livewire('sesiones.registrar-sesiones-component')
 
-    {{-- Si tienes un componente específico para eliminar sesiones, lo agregas aquí --}}
+    {{-- DEBE ESTAR ESTA LÍNEA AQUÍ: --}}
+    @livewire('sesiones.eliminar-sesion-component')
 </div>

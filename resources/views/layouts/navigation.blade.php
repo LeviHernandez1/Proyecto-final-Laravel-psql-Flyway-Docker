@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    {{-- Nav para calendario --}}
+                    <x-nav-link :href="route('publico.calendario')" :active="request()->routeIs('publico.calendario')">
+                        {{ __('Calendario de Eventos') }}
+                    </x-nav-link>
+
                     @canany(['consultar-listado-usuarios', 'registrar-usuario', 'cambiar-estatus-usuario'])
                         <x-nav-link :href="route('admin.usuarios.index')" :active="request()->routeIs('admin.usuarios.index')">
                             {{ __('Administración de usuarios') }}
@@ -25,9 +31,12 @@
                             {{ __('Administración de roles') }}
                         </x-nav-link>
                     @endcanany
-                    <x-nav-link :href="route('admin.reservaciones.index')" :active="request()->routeIs('admin.reservaciones.index')">
-                        {{ __('Administración de reservaciones') }}
-                    </x-nav-link>
+
+                    @can('consultar-reservaciones')
+                        <x-nav-link :href="route('admin.reservaciones.index')" :active="request()->routeIs('admin.reservaciones.index')">
+                            {{ __('Administración de reservaciones') }}
+                        </x-nav-link>
+                    @endcan
 
                     {{-- NUEVO LINK DE EVENTOS --}}
                     @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
@@ -105,6 +114,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            {{-- Nav para calendario --}}
+            <x-responsive-nav-link :href="route('publico.calendario')" :active="request()->routeIs('publico.calendario')">
+                {{ __('Calendario de Eventos') }}
+            </x-responsive-nav-link>
+
             {{-- NUEVO LINK RESPONSIVO DE EVENTOS --}}
             @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
                 <x-responsive-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">

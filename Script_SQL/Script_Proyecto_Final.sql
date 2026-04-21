@@ -11,6 +11,7 @@ SELECT * FROM eventos;
 SELECT * FROM sesiones;
 SELECT * FROM registro_asistentes;
 SELECT * FROM inscripciones;
+SELECT * FROM roles;
 
 SELECT * FROM flyway_schema_history;
 
@@ -29,3 +30,9 @@ INSERT INTO sesiones (id_evento, fecha, horario, ponente) VALUES
 -- Insertar un Asistente de prueba
 INSERT INTO registro_asistentes (nombre_asistente, email, password, role) VALUES
 ('Usuario Prueba', 'prueba@ejemplo.com', 'password_hash_aqui', 'Asistente');
+
+/* Consulta de permisos */
+SELECT r.name as rol, p.name as permiso 
+FROM roles r
+JOIN role_has_permissions rhp ON r.id = rhp.role_id
+JOIN permissions p ON p.id = rhp.permission_id;

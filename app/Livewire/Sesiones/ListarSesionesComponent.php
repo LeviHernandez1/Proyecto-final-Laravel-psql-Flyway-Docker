@@ -15,6 +15,12 @@ class ListarSesionesComponent extends Component
     }
 
     #[On('actualizar-lista-sesiones')]
+    public function refresh()
+    {
+        // Este método se ejecuta al recibir el dispatch y obliga a Livewire a re-renderizar la tabla
+    }
+
+    #[On('actualizar-lista-sesiones')]
     public function actualizar() {}
 
     #[Computed]
