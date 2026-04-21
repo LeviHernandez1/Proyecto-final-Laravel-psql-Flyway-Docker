@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\Eventos\GestionarEventos;
 use App\Livewire\Reservaciones\ListarReservacionesComponent;
 use App\Livewire\Roles\ListarRolesComponent;
+use App\Livewire\Sesiones\ListarSesionesComponent;
 use App\Livewire\Usuarios\ListarUsuariosComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservaciones', ListarReservacionesComponent::class)->name('admin.reservaciones.index');
     // Nueva ruta de eventos
     Route::get('/eventos', GestionarEventos::class)->name('admin.eventos.index');
+    // Nueva ruta de Sesiones
+    Route::get('/admin/sesiones', ListarSesionesComponent::class)->name('admin.sesiones.index')->middleware('auth');
 
     Route::get('/usuarios', ListarUsuariosComponent::class)->name('admin.usuarios.index')->middleware('permission:consultar-listado-usuarios|registrar-usuario|cambiar-estatus-usuario');
     Route::get('/roles', ListarRolesComponent::class)->name('admin.roles.index')->middleware('permission:consultar-listado-roles|registrar-rol');

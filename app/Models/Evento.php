@@ -31,4 +31,8 @@ class Evento extends Model
     {
         return new EventoQueryBuilder($query);
     }
+    public function sesiones()
+    {
+        return $this->hasMany(Sesion::class, 'id_evento', 'id_evento');
+    }
 }

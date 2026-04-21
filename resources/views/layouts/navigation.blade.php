@@ -28,10 +28,18 @@
                     <x-nav-link :href="route('admin.reservaciones.index')" :active="request()->routeIs('admin.reservaciones.index')">
                         {{ __('Administración de reservaciones') }}
                     </x-nav-link>
+
                     {{-- NUEVO LINK DE EVENTOS --}}
                     @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
                         <x-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">
                             {{ __('Gestión de Eventos') }}
+                        </x-nav-link>
+                    @endcanany
+                    {{-- NUEVO LINK DE SESIONES --}}
+                    @canany(['consultar-listado-eventos', 'registrar-evento'])
+                        {{-- Usamos los mismos permisos de eventos por ahora --}}
+                        <x-nav-link :href="route('admin.sesiones.index')" :active="request()->routeIs('admin.sesiones.index')">
+                            {{ __('Gestión de Sesiones') }}
                         </x-nav-link>
                     @endcanany
                 </div>
@@ -101,6 +109,12 @@
             @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
                 <x-responsive-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">
                     {{ __('Gestión de Eventos') }}
+                </x-responsive-nav-link>
+            @endcanany
+            {{-- NUEVO LINK RESPONSIVO DE SESIONES --}}
+            @canany(['consultar-listado-eventos', 'registrar-evento'])
+                <x-responsive-nav-link :href="route('admin.sesiones.index')" :active="request()->routeIs('admin.sesiones.index')">
+                    {{ __('Gestión de Sesiones') }}
                 </x-responsive-nav-link>
             @endcanany
             @canany(['consultar-listado-usuarios', 'registrar-usuario', 'cambiar-estatus-usuario'])
