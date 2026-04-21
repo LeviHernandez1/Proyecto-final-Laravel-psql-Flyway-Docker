@@ -39,14 +39,16 @@
                     @endcan
 
                     {{-- NUEVO LINK DE EVENTOS --}}
-                    @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
+                    {{-- El Invitado no ve este botón de gestión --}}
+                    @canany(['registrar-evento', 'editar-evento', 'eliminar-evento'])
                         <x-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">
                             {{ __('Gestión de Eventos') }}
                         </x-nav-link>
                     @endcanany
+
                     {{-- NUEVO LINK DE SESIONES --}}
-                    @canany(['consultar-listado-eventos', 'registrar-evento'])
-                        {{-- Usamos los mismos permisos de eventos por ahora --}}
+                    {{-- Rregistrar-evento  es exclusivo de Admin/Organizador --}}
+                    @canany(['registrar-evento'])
                         <x-nav-link :href="route('admin.sesiones.index')" :active="request()->routeIs('admin.sesiones.index')">
                             {{ __('Gestión de Sesiones') }}
                         </x-nav-link>
@@ -121,17 +123,20 @@
             </x-responsive-nav-link>
 
             {{-- NUEVO LINK RESPONSIVO DE EVENTOS --}}
-            @canany(['consultar-listado-eventos', 'registrar-evento', 'editar-evento', 'eliminar-evento'])
+            
+            @canany(['registrar-evento', 'editar-evento', 'eliminar-evento'])
                 <x-responsive-nav-link :href="route('admin.eventos.index')" :active="request()->routeIs('admin.eventos.index')">
                     {{ __('Gestión de Eventos') }}
                 </x-responsive-nav-link>
             @endcanany
+
             {{-- NUEVO LINK RESPONSIVO DE SESIONES --}}
-            @canany(['consultar-listado-eventos', 'registrar-evento'])
+            @canany(['registrar-evento'])
                 <x-responsive-nav-link :href="route('admin.sesiones.index')" :active="request()->routeIs('admin.sesiones.index')">
                     {{ __('Gestión de Sesiones') }}
                 </x-responsive-nav-link>
             @endcanany
+
             @canany(['consultar-listado-usuarios', 'registrar-usuario', 'cambiar-estatus-usuario'])
                 <x-responsive-nav-link :href="route('admin.usuarios.index')" :active="request()->routeIs('admin.usuarios.index')">
                     {{ __('Administración de usuarios') }}

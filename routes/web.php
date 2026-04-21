@@ -9,7 +9,7 @@ use App\Livewire\Usuarios\ListarUsuariosComponent;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Publico\CalendarioEventos;
 // Importaciones para los nuevos requerimientos
-use App\Livewire\Publico\RegistroAsistente;
+/* use App\Livewire\Publico\RegistroAsistente; */
 use App\Livewire\Asistentes\MisConstancias;
 use App\Livewire\Asistentes\EncuestaSatisfaccion;
 
